@@ -1,6 +1,5 @@
 "use client"
 
-import { api } from "~/trpc/react";
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -18,8 +17,6 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form"
-import { utils } from "prettier/doc.js";
-import { create } from "domain";
 
 const formSchema = z.object({
   firstName: z.string().min(2, {
@@ -39,18 +36,8 @@ const formSchema = z.object({
   }),
 })
 
-export default function AccountCreationFormComponent() {
+export function AccountCreationFormComponent() {
   const [showPassword, setShowPassword] = useState(false)
-
-  const createUser = api.user.create.useMutation({
-    onSuccess: (data) => {
-      console.log("User created successfully:", data);
-      window.location.href = "/proposal";
-    },
-    onError: (error) => {
-      console.error("Error creating user:", error);
-    },
-  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -62,16 +49,10 @@ export default function AccountCreationFormComponent() {
       password: "",
     },
   })
- 
-  
-  function onSubmit(data: z.infer<typeof formSchema>) {  
-    createUser.mutate({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      mail: data.email,
-      city: data.city,
-      password: data.password,
-    });
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // Here you would typically handle the form submission
+    console.log(values)
   }
 
   return (

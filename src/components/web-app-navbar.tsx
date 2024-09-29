@@ -1,16 +1,15 @@
 "use client"
 
-import { ModalFormComponent } from '~/components/modal-form';
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { SearchIcon, MenuIcon, XIcon } from 'lucide-react';
-import { Input } from "~/components/ui/input";
-import { Button } from "~/components/ui/button";
-
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { SearchIcon, MenuIcon, XIcon } from 'lucide-react'
+import { Input } from "~/components/ui/input"
+import { Button } from "~/components/ui/button"
+import { ModalFormComponent } from './modal-form'
 export function WebAppNavbarComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -35,7 +34,10 @@ export function WebAppNavbarComponent() {
             <div className="flex-shrink-0">
               <Link href="/" className="text-2xl font-bold text-primary">WebApp</Link>
             </div>
-           
+              <div>
+                <ModalFormComponent />
+              </div>
+            </div>
           </div>
           <div className="hidden md:flex items-center space-x-4">
             <div className="relative">
@@ -48,9 +50,6 @@ export function WebAppNavbarComponent() {
                 className="block w-full pl-10 pr-3 py-2 border border-input rounded-md leading-5 bg-background placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm"
               />
             </div>
-            <div>
-            <ModalFormComponent />
-           </div>
             <Button variant="outline">Sign In</Button>
             <Button>Login</Button>
           </div>
