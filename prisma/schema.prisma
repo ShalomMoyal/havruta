@@ -77,11 +77,13 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 model Proposal {
-    id        Int      @id @default(autoincrement())
-    title     String
-    body      String
-    createdAt DateTime @default(now())
-    createdBy User     @relation(fields: [createdById], references: [id])
-    createdById String
+    id                      Int      @id @default(autoincrement())
+    interested_studies      String?
+    studytype               String?
+    studyTime               String?
+    contact                 String?
+    createdAt               DateTime @default(now())
+    createdBy               User     @relation(fields: [createdById], references: [id])
+    createdById             String
 
 }

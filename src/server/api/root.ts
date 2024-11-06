@@ -1,5 +1,5 @@
 import { postRouter } from "~/server/api/routers/post";
-import { prposalRouter} from "~/server/api/routers/propasl";
+import { prposalRouter} from "~/server/api/routers/propoasl";
 import { userRouter } from "./routers/user";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 

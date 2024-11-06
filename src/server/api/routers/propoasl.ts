@@ -16,12 +16,14 @@ export const prposalRouter = createTRPCRouter({
     }),
     
     create: protectedProcedure
-    .input(z.object({ title: z.string().min(1), body: z.string().min(1) }))
+    .input(z.object({ interested_studies: z.string().min(1), studytype: z.string().min(1), studyTime: z.string().min(1), contact: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
       return ctx.db.proposal.create({
         data: {
-          title: input.title,
-          body: input.body,
+          interested_studies: input.interested_studies,
+          studytype: input.studytype,
+          studyTime: input.studyTime,
+          contact: input.contact,
           createdBy: { connect: { id: ctx.session.user.id } },
         },
       });
